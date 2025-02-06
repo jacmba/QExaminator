@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "category": "General Knowledge",
+        "question": "What is the capital of France?",
+        "answers": ["Paris", "Berlin", "Madrid"],
+        "right_answers": [0]
+    },
+    {
+        "id": 2,
+        "category": "Science",
+        "question": "What is the chemical symbol for water?",
+        "answers": ["H2O", "O2", "CO2"],
+        "right_answers": [0]
+    }
+]

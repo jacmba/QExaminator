@@ -1,19 +1,5 @@
 #include <QtTest>
-#include <QObject>
-#include <question.h>
-
-class TestQuestion : public QObject
-{
-    Q_OBJECT
-
-public:
-    TestQuestion();
-    ~TestQuestion();
-
-private slots:
-    void testFromJson();
-    void testRightAnswers();
-};
+#include "tst_testquestion.h"
 
 TestQuestion::TestQuestion() {}
 
@@ -53,9 +39,6 @@ void TestQuestion::testRightAnswers() {
 
     QCOMPARE(q.rightAnswers.size(), 3);
     QVERIFY(q.rightAnswers.contains(1));
-    QVERIFY(q.rightAnswers.contains(2));
+    QVERIFY(q.rightAnswers.contains(4));
+    QVERIFY(q.rightAnswers.contains(7));
 }
-
-QTEST_APPLESS_MAIN(TestQuestion)
-
-#include "tst_testquestion.moc"
