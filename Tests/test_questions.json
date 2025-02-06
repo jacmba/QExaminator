@@ -12,5 +12,12 @@
         "question": "What is the chemical symbol for water?",
         "answers": ["H2O", "O2", "CO2"],
         "right_answers": [0]
+    },
+    {
+        "id": 3,
+        "category": "Computing Knowledge",
+        "question": "Which of this is not a property of OOP?",
+        "answers": ["Encapsulation", "Concurrency", "Inheritance"],
+        "right_answers": [0, 2]
     }
 ]

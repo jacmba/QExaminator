@@ -4,5 +4,5 @@ CONFIG += c++17
 
 SUBDIRS += $$PWD/UI \
     $$PWD/Tests \
-    Data \
-    Domain
+    $$PWD/Data \
+    $$PWD/Domain

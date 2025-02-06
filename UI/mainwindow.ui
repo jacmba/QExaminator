@@ -14,17 +14,44 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLabel" name="titleLabel">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>100</y>
-      <width>251</width>
-      <height>131</height>
+      <x>5</x>
+      <y>20</y>
+      <width>791</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Push Me!</string>
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>69</x>
+      <y>79</y>
+      <width>651</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="answersLayout"/>
+   </widget>
+   <widget class="QPushButton" name="checkButton">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>520</y>
+      <width>88</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Check</string>
     </property>
    </widget>
   </widget>

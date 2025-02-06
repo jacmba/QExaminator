@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLayout>
+#include <questionrepository.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,7 +21,16 @@ public:
 
 private slots:
 
+    void on_checkButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    QList<Question> questions;
+    void loadQuestions();
+
+    void showQuestion();
+
+    void clearLayout(QLayout *layout);
 };
 #endif // MAINWINDOW_H
