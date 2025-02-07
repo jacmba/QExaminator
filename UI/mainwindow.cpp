@@ -9,6 +9,8 @@
 #include <QWidget>
 #include <QAbstractButton>
 
+int seconds;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,14 +18,19 @@ MainWindow::MainWindow(QWidget *parent)
     loadQuestions();
 
     ui->setupUi(this);
+    timer = new QTimer(this);
     setWindowTitle("QExaminator");
     start();
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(timerTimeout()));
+    timer->setInterval(1000);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete app;
+    delete timer;
 }
 
 void MainWindow::loadQuestions()
@@ -37,9 +44,11 @@ void MainWindow::showQuestion()
     ui->titleLabel->clear();
 
     if (app->size() == 0) {
+        timer->stop();
         ui->nextButton->hide();
         ui->checkButton->hide();
-        ui->scoreLabel->setText(QString("Test score: ") + QString::number(app->getScore()) + QString(" %"));
+        ui->hudContainer->hide();
+        ui->scoreLabel->setText(QString("Test score: ") + QString::number(app->getScore()) + QString(" %\nTime: " + QString::number(seconds) + "s"));
         ui->finishContainer->show();
         app->setState(AppState::POST_TEST);
 
@@ -48,9 +57,11 @@ void MainWindow::showQuestion()
 
     ui->nextButton->hide();
     ui->checkButton->show();
+    ui->hudContainer->show();
 
     currentQuestion = app->getQuestion();
 
+    ui->progressLabel->setText(QString::number(app->getIndex()) + " of "  + QString::number(app->getMaxQuestions()));
     ui->titleLabel->setText(currentQuestion.question);
 
     for (const auto &a : currentQuestion.answers) {
@@ -160,8 +171,11 @@ void MainWindow::start()
     ui->categoriesList->addItems(app->getCategories());
     ui->initContainer->show();
     ui->finishContainer->hide();
+    ui->hudContainer->hide();
     app->setState(AppState::INIT);
     app->setMaxQuestions(ui->maxQuestions->value());
+    seconds = 0;
+    timer->stop();
 }
 
 
@@ -183,6 +197,8 @@ void MainWindow::on_startButton_clicked()
     ui->startButton->hide();
     ui->initContainer->hide();
     showQuestion();
+    seconds = 0;
+    timer->start();
 }
 
 
@@ -201,5 +217,11 @@ void MainWindow::on_maxQuestions_valueChanged(int arg1)
 void MainWindow::on_homeButton_clicked()
 {
     start();
+}
+
+void MainWindow::timerTimeout()
+{
+    seconds++;
+    ui->timeLabel->setText(QString::number(seconds) + "s");
 }
 

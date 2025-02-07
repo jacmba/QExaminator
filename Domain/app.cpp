@@ -58,6 +58,11 @@ int App::size()
     return questionIndex >= maxQuestions ? 0 : filteredQuestions.size();
 }
 
+int App::getIndex()
+{
+    return questionIndex;
+}
+
 void App::setState(AppState state)
 {
     this->state = state;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>786</width>
-    <height>600</height>
+    <height>657</height>
    </rect>
   </property>
   <property name="palette">
@@ -1119,7 +1119,7 @@ color: rgb(26, 95, 180);
    <widget class="QPushButton" name="checkButton">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>330</x>
       <y>520</y>
       <width>150</width>
       <height>50</height>
@@ -1622,7 +1622,7 @@ color: rgb(26, 95, 180);
     </property>
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>330</x>
       <y>520</y>
       <width>150</width>
       <height>50</height>
@@ -2125,7 +2125,7 @@ color: rgb(26, 95, 180);
     </property>
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>330</x>
       <y>520</y>
       <width>150</width>
       <height>50</height>
@@ -2629,72 +2629,98 @@ color: rgb(26, 95, 180);
     <property name="geometry">
      <rect>
       <x>9</x>
-      <y>9</y>
+      <y>49</y>
       <width>761</width>
-      <height>501</height>
+      <height>351</height>
      </rect>
     </property>
-    <widget class="QWidget" name="gridLayoutWidget">
+    <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>208</y>
        <width>761</width>
-       <height>501</height>
+       <height>121</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="initLayout">
-      <property name="verticalSpacing">
-       <number>0</number>
+     <layout class="QHBoxLayout" name="initLayout">
+      <property name="spacing">
+       <number>100</number>
       </property>
-      <item row="1" column="0">
-       <widget class="QComboBox" name="categoriesList">
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>0</number>
         </property>
-        <property name="currentText">
-         <string/>
-        </property>
-        <property name="placeholderText">
-         <string>Select Category</string>
-        </property>
-       </widget>
+        <item>
+         <widget class="QLabel" name="categoryLabel">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Category</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="categoriesList">
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="currentText">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>Select Category</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="maxQuestions">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
         </property>
-        <property name="minimum">
-         <number>3</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="categoryLabel">
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Category</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="nQuestionsLabel">
-        <property name="text">
-         <string>Number of questions</string>
-        </property>
-       </widget>
+        <item>
+         <widget class="QLabel" name="nQuestionsLabel">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Number of questions</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="maxQuestions">
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="minimum">
+           <number>3</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -2738,6 +2764,9 @@ color: rgb(26, 95, 180);
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="homeButton">
@@ -3247,6 +3276,58 @@ color: rgb(26, 95, 180);
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="hudContainer" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>529</y>
+      <width>321</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>291</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="hudLayout">
+      <item>
+       <widget class="QLabel" name="progressLabel">
+        <property name="styleSheet">
+         <string notr="true">color: black;
+font: 10pt;</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="timeLabel">
+        <property name="styleSheet">
+         <string notr="true">color: black;
+font: 10pt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>titleLabel</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>checkButton</zorder>
+   <zorder>nextButton</zorder>
+   <zorder>startButton</zorder>
+   <zorder>finishContainer</zorder>
+   <zorder>initContainer</zorder>
+   <zorder>hudContainer</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -18,6 +18,7 @@ public:
     QStringList getCategories();
     int getScore();
     int size();
+    int getIndex();
 
     void setState(AppState state);
     void setFilter(QString filter);

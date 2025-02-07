@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLayout>
+#include <QTimer>
 #include <questionrepository.h>
 #include <app.h>
 
@@ -34,9 +35,12 @@ private slots:
 
     void on_homeButton_clicked();
 
+    void timerTimeout();
+
 private:
     Ui::MainWindow *ui;
     App *app;
+    QTimer *timer;
 
     QList<Question> questions;
     Question currentQuestion;
