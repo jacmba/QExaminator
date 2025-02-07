@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLayout>
 #include <questionrepository.h>
+#include <app.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,10 +26,20 @@ private slots:
 
     void on_nextButton_clicked();
 
+    void on_startButton_clicked();
+
+    void on_categoriesList_currentTextChanged(const QString &arg1);
+
+    void on_maxQuestions_valueChanged(int arg1);
+
+    void on_homeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    App *app;
 
     QList<Question> questions;
+    Question currentQuestion;
     void loadQuestions();
 
     void showQuestion();
@@ -36,5 +47,7 @@ private:
     void clearLayout(QLayout *layout);
 
     void checkAnswer();
+
+    void start();
 };
 #endif // MAINWINDOW_H

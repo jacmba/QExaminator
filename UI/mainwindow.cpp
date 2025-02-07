@@ -9,22 +9,21 @@
 #include <QWidget>
 #include <QAbstractButton>
 
-Question currentQuestion;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     loadQuestions();
+
     ui->setupUi(this);
     setWindowTitle("QExaminator");
-    ui->nextButton->hide();
-    showQuestion();
+    start();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete app;
 }
 
 void MainWindow::loadQuestions()
@@ -37,9 +36,12 @@ void MainWindow::showQuestion()
     clearLayout(ui->answersLayout);
     ui->titleLabel->clear();
 
-    if (questions.size() == 0) {
+    if (app->size() == 0) {
         ui->nextButton->hide();
         ui->checkButton->hide();
+        ui->scoreLabel->setText(QString("Test score: ") + QString::number(app->getScore()) + QString(" %"));
+        ui->finishContainer->show();
+        app->setState(AppState::POST_TEST);
 
         return;
     }
@@ -47,9 +49,7 @@ void MainWindow::showQuestion()
     ui->nextButton->hide();
     ui->checkButton->show();
 
-    int index = QRandomGenerator::global()->bounded(0, questions.size());
-
-    currentQuestion = questions.takeAt(index);
+    currentQuestion = app->getQuestion();
 
     ui->titleLabel->setText(currentQuestion.question);
 
@@ -137,9 +137,31 @@ void MainWindow::checkAnswer()
         resultLabel->setStyleSheet("color: red; font-weight: bold; border: 2px solid red; padding: 5px; border-radius: 10px;");
     } else {
         resultLabel->setStyleSheet("color: green; font-weight: bold; border: 2px solid green; padding: 5px; border-radius: 10px;");
+        app->increaseScore();
     }
 
     ui->answersLayout->addWidget(resultLabel);
+}
+
+void MainWindow::start()
+{
+    if (app != nullptr) {
+        delete app;
+    }
+
+    app = new App(questions);
+    ui->nextButton->hide();
+    ui->checkButton->hide();
+    ui->startButton->show();
+
+    ui->categoriesList->clear();
+
+    ui->categoriesList->addItem("ALL");
+    ui->categoriesList->addItems(app->getCategories());
+    ui->initContainer->show();
+    ui->finishContainer->hide();
+    app->setState(AppState::INIT);
+    app->setMaxQuestions(ui->maxQuestions->value());
 }
 
 
@@ -152,5 +174,32 @@ void MainWindow::on_checkButton_clicked()
 void MainWindow::on_nextButton_clicked()
 {
     showQuestion();
+}
+
+
+void MainWindow::on_startButton_clicked()
+{
+    app->setState(AppState::TEST_RUN);
+    ui->startButton->hide();
+    ui->initContainer->hide();
+    showQuestion();
+}
+
+
+void MainWindow::on_categoriesList_currentTextChanged(const QString &arg1)
+{
+    app->setFilter(arg1);
+}
+
+
+void MainWindow::on_maxQuestions_valueChanged(int arg1)
+{
+    app->setMaxQuestions(arg1);
+}
+
+
+void MainWindow::on_homeButton_clicked()
+{
+    start();
 }
 
