@@ -7,6 +7,9 @@
 #include <QHBoxLayout>
 #include <QLayoutItem>
 #include <QWidget>
+#include <QAbstractButton>
+
+Question currentQuestion;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     loadQuestions();
     ui->setupUi(this);
-
+    setWindowTitle("QExaminator");
+    ui->nextButton->hide();
     showQuestion();
 }
 
@@ -34,20 +38,27 @@ void MainWindow::showQuestion()
     ui->titleLabel->clear();
 
     if (questions.size() == 0) {
+        ui->nextButton->hide();
+        ui->checkButton->hide();
+
         return;
     }
 
+    ui->nextButton->hide();
+    ui->checkButton->show();
+
     int index = QRandomGenerator::global()->bounded(0, questions.size());
 
-    Question question = questions.takeAt(index);
+    currentQuestion = questions.takeAt(index);
 
-    ui->titleLabel->setText(question.question);
+    ui->titleLabel->setText(currentQuestion.question);
 
-    for (const auto &a : question.answers) {
+    for (const auto &a : currentQuestion.answers) {
         QHBoxLayout *row = new QHBoxLayout();
+        row->setAlignment(Qt::AlignLeft);
         QLabel *label = new QLabel(a);
 
-        if(question.rightAnswers.size() == 1) {
+        if(currentQuestion.rightAnswers.size() == 1) {
             QRadioButton *rb = new QRadioButton();
             row->addWidget(rb);
         } else {
@@ -85,11 +96,61 @@ void MainWindow::clearLayout(QLayout *layout)
     }
 }
 
+void MainWindow::checkAnswer()
+{
+    ui->nextButton->show();
+    ui->checkButton->hide();
+
+    int fails = 0;
+
+    for (int i = 0; i < ui->answersLayout->count(); i++) {
+        QLayoutItem *rowItem = ui->answersLayout->itemAt(i);
+        QHBoxLayout *row = dynamic_cast<QHBoxLayout*>(rowItem->layout());
+
+        QLayoutItem *boxItem = row->itemAt(0);
+        QAbstractButton *box = dynamic_cast<QAbstractButton*>(boxItem->widget());
+        box->setDisabled(true);
+
+        QLayoutItem *textItem = row->itemAt(1);
+        QLabel * text = dynamic_cast<QLabel*>(textItem->widget());
+
+        if(!currentQuestion.rightAnswers.contains(i)) {
+            text->setStyleSheet("color: red; font-weight: bold; text-decoration: line-through;");
+
+            if (box->isChecked()) {
+                fails++;
+            }
+        } else {
+            text->setStyleSheet("color: green; font-weight: bold;");
+
+            if (!box->isChecked()) {
+                fails++;
+            }
+        }
+    }
+
+    QLabel *resultLabel = new QLabel("CORRECT !!");
+    resultLabel->setAlignment(Qt::AlignCenter);
+
+    if (fails > 0) {
+        resultLabel->setText("INCORRECT !!");
+        resultLabel->setStyleSheet("color: red; font-weight: bold; border: 2px solid red; padding: 5px; border-radius: 10px;");
+    } else {
+        resultLabel->setStyleSheet("color: green; font-weight: bold; border: 2px solid green; padding: 5px; border-radius: 10px;");
+    }
+
+    ui->answersLayout->addWidget(resultLabel);
+}
+
 
 void MainWindow::on_checkButton_clicked()
 {
-    showQuestion();
+    checkAnswer();
+}
 
-    // ToDO actually check answer result, etc
+
+void MainWindow::on_nextButton_clicked()
+{
+    showQuestion();
 }
 

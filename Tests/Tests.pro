@@ -51,6 +51,6 @@ testdata.files = $$PWD/test_questions.json
 testdata.path = $$UI_BUILD_PATH  # Copy it to UI's build directory
 
 # Rename the file to questions.json after copying
-QMAKE_POST_LINK += $$QMAKE_COPY $$PWD/test_questions.json $$UI_BUILD_PATH/questions.json $$escape_expand(\\n)
+QMAKE_POST_LINK += $$QMAKE_COPY $$PWD/test_questions.json $$UI_BUILD_PATH/test_questions.json $$escape_expand(\\n)
 
 INSTALLS += testdata

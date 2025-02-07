@@ -23,6 +23,8 @@ private slots:
 
     void on_checkButton_clicked();
 
+    void on_nextButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -32,5 +34,7 @@ private:
     void showQuestion();
 
     void clearLayout(QLayout *layout);
+
+    void checkAnswer();
 };
 #endif // MAINWINDOW_H
