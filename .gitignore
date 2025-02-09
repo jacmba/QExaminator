@@ -61,6 +61,12 @@ CMakeLists.txt.user*
 *.vcxproj
 *vcxproj.*
 
+.vs/
+**/*.qtvscr
+**/debug/*
+**/release/*
+**/target_wrapper.bat
+
 # MinGW generated files
 *.Debug
 *.Release
