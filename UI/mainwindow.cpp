@@ -8,6 +8,7 @@
 #include <QLayoutItem>
 #include <QWidget>
 #include <QAbstractButton>
+#include <QMessageBox>
 
 int seconds;
 
@@ -24,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(timer, SIGNAL(timeout()), this, SLOT(timerTimeout()));
     timer->setInterval(1000);
+
+    connect(ui->action_About, SIGNAL(triggered()), this, SLOT(showAbout()));
 }
 
 MainWindow::~MainWindow()
@@ -176,6 +179,11 @@ void MainWindow::start()
     app->setMaxQuestions(ui->maxQuestions->value());
     seconds = 0;
     timer->stop();
+}
+
+void MainWindow::showAbout()
+{
+    QMessageBox::about(this, "About QExaminator", "QExaminator v0.9.0\nCopyleft Jacinto Mba 2025");
 }
 
 

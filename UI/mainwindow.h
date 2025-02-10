@@ -37,6 +37,8 @@ private slots:
 
     void timerTimeout();
 
+    void showAbout();
+
 private:
     Ui::MainWindow *ui;
     App *app;
