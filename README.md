@@ -1,51 +1,90 @@
-# First Level Heading
+# QExaminator
 
-Paragraph.
+QExaminator is a Qt-based desktop application designed for practicing multiple-choice tests. It allows users to load question sets from a JSON file, answer questions interactively, and receive feedback on their performance.
 
-## Second Level Heading
+## Features
 
-Paragraph.
+- Load and display multiple-choice questions from a JSON file
+- Support for both single-answer and multiple-answer questions
+- Randomized question selection
+- User-friendly interface with Qt Widgets
+- Feedback highlighting correct and incorrect answers
+- Timer support for timed quizzes
 
-- bullet
-+ other bullet
-* another bullet
-    * child bullet
+## Installation
 
-1. ordered
-2. next ordered
+### Prerequisites
 
-### Third Level Heading
+- Qt 5 or Qt 6 (including Qt Creator for easier development)
+- C++ compiler supporting C++17 or later
 
-Some *italic* and **bold** text and `inline code`.
+### Build & Run
 
-An empty line starts a new paragraph.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/qexaminator.git
+   cd qexaminator
+   ```
+2. Open the project in Qt Creator or build manually using qmake:
+   ```sh
+   qmake
+   make
+   ```
+3. Run the application:
+   ```sh
+   ./QExaminator
+   ```
 
-Use two spaces at the end  
-to force a line break.
+## Usage
 
-A horizontal ruler follows:
+1. Load a set of questions from a JSON file.
+2. Select a category (if applicable).
+3. Start answering the questions.
+4. Submit answers and receive immediate feedback.
+5. Continue until all questions are answered.
 
----
+## Question Data Format
 
-Add links inline like [this link to the Qt homepage](https://www.qt.io),
-or with a reference like [this other link to the Qt homepage][1].
+QExaminator expects questions to be provided in a JSON file. The format follows this structure:
 
-    Add code blocks with
-    four spaces at the front.
+```json
+[
+    {
+        "id": 1,
+        "category": "General Knowledge",
+        "question": "What is the capital of France?",
+        "answers": ["Paris", "Berlin", "Madrid"],
+        "right_answers": [0]
+    },
+    {
+        "id": 2,
+        "category": "Science",
+        "question": "What is the chemical symbol for water?",
+        "answers": ["H2O", "O2", "CO2"],
+        "right_answers": [0]
+    }
+]
+```
+- `id`: Unique identifier for the question
+- `category`: The topic category
+- `question`: The question text
+- `answers`: An array of possible answers
+- `right_answers`: An array of indices indicating the correct answer(s)
 
-> A blockquote
-> starts with >
->
-> and has the same paragraph rules as normal text.
+## Customization
 
-First Level Heading in Alternate Style
-======================================
+### Changing the Application Icon
+If the application icon does not display correctly on Linux, try setting it manually using `XDG_ICON_RESOURCE`:
+```sh
+xdg-icon-resource install --size 64 path/to/icon.png qexaminator
+```
 
-Paragraph.
+### Styling
+The application uses QSS (Qt Style Sheets) for styling. You can customize the appearance by modifying the included QSS file.
 
-Second Level Heading in Alternate Style
----------------------------------------
+## Contributing
+Feel free to submit pull requests or report issues. Contributions are always welcome!
 
-Paragraph.
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-[1]: https://www.qt.io
