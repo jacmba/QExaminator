@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=QExaminator
+Comment=Test exams practice app
+Exec=~/opt/QExaminator/QExaminator %F
+Icon=~/opt/QExaminator/logo.png
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupWMClass=TestsApp
