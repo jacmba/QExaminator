@@ -33,8 +33,8 @@ int App::getMaxQuestions()
 Question App::getQuestion()
 {
     questionIndex++;
-    int index = QRandomGenerator::global()->bounded(0, questions.size());
-    Question q = questions.takeAt(index);
+    int index = QRandomGenerator::global()->bounded(0, filteredQuestions.size());
+    Question q = filteredQuestions.takeAt(index);
     return q;
 }
 
