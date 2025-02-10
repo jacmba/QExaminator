@@ -9,6 +9,7 @@
 #include <QWidget>
 #include <QAbstractButton>
 #include <QMessageBox>
+#include "version.h"
 
 int seconds;
 
@@ -183,7 +184,8 @@ void MainWindow::start()
 
 void MainWindow::showAbout()
 {
-    QMessageBox::about(this, "About QExaminator", "QExaminator v0.9.0\nCopyleft Jacinto Mba 2025");
+    QString body = QString("QExaminator v%1 \nCopyleft Jacinto Mba 2025").arg(APP_VERSION);
+    QMessageBox::about(this, "About QExaminator", body);
 }
 
 

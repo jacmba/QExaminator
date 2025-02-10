@@ -12,6 +12,7 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
+    version.h
 
 FORMS += \
     mainwindow.ui
